@@ -18,6 +18,12 @@
         url: '/results',
         templateUrl: 'results.html'
       })
+      .state("signin", {
+        url:          "/signin",
+        templateUrl:  "/js/auth/signin.html",
+        controller:   "SignInController",
+        controllerAs: "vm"
+      });
     $urlRouterProvider.otherwise('/');
   }
 })();
