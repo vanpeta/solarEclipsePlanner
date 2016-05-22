@@ -5,14 +5,14 @@
     <title>Solar Eclipse Planner</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
   </head>
 
-  <body ng-controller= "usersController as userVm">
-  {{userVm.test}}
-  {{1+1}}
+  <body>
+    <div ui-view></div>
 
     <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/config/routes.js" charset="utf-8"></script>
     <script src="js/users/usersControllers.js" charset="utf-8"></script>
   </body>
 </html>

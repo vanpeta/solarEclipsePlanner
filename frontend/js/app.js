@@ -1,3 +1,3 @@
 (function() {
-  angular.module('solarEclipsePlanner', []);
+  angular.module('solarEclipsePlanner', ['ui.router']);
 })();
