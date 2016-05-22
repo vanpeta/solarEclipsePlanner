@@ -10,6 +10,14 @@
         url: '/',
         templateUrl: 'home.html'
       })
+      .state('map', {
+        url: '/map',
+        templateUrl: 'map.html'
+      })
+      .state('results', {
+        url: '/results',
+        templateUrl: 'results.html'
+      })
     $urlRouterProvider.otherwise('/');
   }
 })();
