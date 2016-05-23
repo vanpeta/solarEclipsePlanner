@@ -23,7 +23,7 @@ router.route('api/users/:id')
   /* Auth Routes */
 router.route('/api/users/me')
   .post(token.authenticate, usersController.me)
-router.route('api/token')
+router.route('/api/token')
   .post(token.create);
 
 module.exports= router;

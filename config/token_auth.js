@@ -41,6 +41,7 @@ const jwtOptions = {
 *     - The response body contains the token that was generated.
 */
 function create(req, res, next) {
+  console.log('token create')
  if (!req.body.email || !req.body.password) {
    var message = 'Missing required fields: email and password';
    return res.status(422).json(message);
