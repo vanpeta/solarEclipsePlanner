@@ -4,9 +4,9 @@ var debug    = require('debug')('app:models');
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, unique: true},
   email: {type: String, required: true, unique: true},
-  favorites: {
+  favorites: [{
     houses: String
-  }
+  }]
 })
 
 // add bcrypt hashing to model (works on a password field)!

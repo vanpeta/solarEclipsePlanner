@@ -12,10 +12,13 @@
     "dotenv": "^2.0.0",
     "ejs": "~2.3.3",
     "express": "~4.13.1",
+    "jQuery": "^1.7.4",
+    "jsdom": "^9.1.0",
     "jsonwebtoken": "^7.0.0",
     "mongoose": "^4.4.17",
     "mongoose-bcrypt": "^1.4.2",
     "morgan": "~1.6.1",
+    "request-promise": "^3.0.0",
     "serve-favicon": "~2.3.0"
   }
 }

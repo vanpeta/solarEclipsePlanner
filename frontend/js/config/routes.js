@@ -12,7 +12,9 @@
       })
       .state('map', {
         url: '/map',
-        templateUrl: 'map.html'
+        templateUrl: 'js/map/map.html',
+        controller: "mapController",
+        controllerAs: "vm"
       })
       .state('results', {
         url: '/results',
