@@ -2,5 +2,8 @@
 
 <div id="map"></div>
 
-<div class='cities' ng-repeat="city in vm.cities" ng-click="vm.airbnbSearch(city)" id="{{city}}">{{city}}</div>
+<div>
+<p>Cities template</p>
+  <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city })" id="{{city}}">{{city}}</div>
+</div>
 

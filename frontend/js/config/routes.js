@@ -16,9 +16,11 @@
         controller: "mapController",
         controllerAs: "vm"
       })
-      .state('results', {
-        url: '/results',
-        templateUrl: 'results.html'
+      .state('houses', {
+        url: '/houses/:city',
+        templateUrl: '/js/airbnb/houses.html',
+        controller: "airbnbController",
+        controllerAs: "vm"
       })
       .state("signin", {
         url:          "/signin",

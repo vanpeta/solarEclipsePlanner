@@ -5,24 +5,12 @@
     .module("solarEclipsePlanner")
     .controller("mapController", mapController);
 
-  mapController.$inject = ["$http"];
+  mapController.$inject = [];
 
-  function mapController($http) {
-    var vm = this;
+  function mapController() {
+    var vm = this
+
     var cities = ["Los Angeles","San Francisco","Miami","Austin"]
-
-    vm.airbnbSearch = airbnbSearch;
     vm.cities = cities;
-
-
-    function airbnbSearch(city) {
-      console.log("airbnbSearch function triggered")
-      //city=city.replace(/ /g,"-");
-      var promise = $http({
-        method: 'GET',
-        url:    '/airbnb',
-      })
-      console.log(promise)
-    }
   }
 })()
