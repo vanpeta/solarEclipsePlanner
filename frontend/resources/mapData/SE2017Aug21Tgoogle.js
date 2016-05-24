@@ -86,6 +86,11 @@ function enlarge() {
 }
 
 function createMarker(point) {
+  var currentLng = point.lng();
+  var currentLat = point.lat();
+  document.getElementById('hiddenLat').textContent= currentLat;
+  document.getElementById('hiddenLng').textContent= currentLng;
+
   var i;
   var markericon = new GIcon(G_DEFAULT_ICON, "../resources/images/marker.png");
   var marker = new GMarker(point, {icon: markericon, draggable: true});
@@ -1441,6 +1446,6 @@ new GLatLng( 13.47746,  -38.46594)],
 "#FFFF00", 3, 0.60, {clickable: false});
 map.addOverlay(polyline);
 
-// Insert TRACK.GOO (ex SHADOW.EXE) above here
+// get latlng
 
 }
