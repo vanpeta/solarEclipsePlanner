@@ -1,11 +1,9 @@
-<p>This is the new map page</p>
-{{vm.test}}
 <div id="hiddenDiv">
   <div id="hiddenLat"></div>
   <div id="hiddenLng"></div>
 </div>
 <div>
-  <div id='map'></div>
+  <div id='map' ></div>
   <table border="0" cellspacing="0" cellpadding="0" style="width: 725px;">
     <tr>
     <td style="width: 60%; text-align: left; vertical-align: top;">
@@ -24,10 +22,10 @@
     </tr>
   </table>
 
-  <div id="cityList">
+  <div id="cityList" class="col-xs-4">
     <p ng-click="vm.getCities()">Get Cities around this point</p>
 
-    <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city })" id="{{city}}">{{city}}</div>
+    <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city.name })" id="{{city.name}}">{{city.name}}, {{city.state}}</div>
   </div>
 </div>
 

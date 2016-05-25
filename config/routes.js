@@ -2,6 +2,7 @@ var express = require ('express');
 var router = express.Router();
 var usersController = require('../controllers/users');
 var airbnbController = require('../controllers/airbnb');
+var geonamesController = require('../controllers/geonames');
 
 // Require token authentication.
 var token = require('../config/token_auth');
@@ -26,6 +27,11 @@ router.route('/api/users/me')
   .post(token.authenticate, usersController.me)
 router.route('/api/token')
   .post(token.create);
+
+  /* Geonames.org API calls */
+
+router.route('/geonames')
+  .get(geonamesController.getCities)
 
 
 /* Airbnb request */

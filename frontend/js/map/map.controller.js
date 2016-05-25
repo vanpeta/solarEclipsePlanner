@@ -30,20 +30,21 @@ We'll use geonames.org API to:
 */
 
 
-    function getCities () {
-      vm.lat = document.getElementById("hiddenLat").innerHTML;
-      vm.lng = document.getElementById("hiddenLng").innerHTML;
-      console.log(encodeURIComponent(vm.lng))
-      console.log(encodeURIComponent(vm.lat))
+    function getCities (lat,lng) {
+      lat = document.getElementById("hiddenLat").innerHTML;
+      lng = document.getElementById("hiddenLng").innerHTML;
       var promise = $http({
         method: 'GET',
-        url: 'http://api.geonames.org/findNearbyPostalCodesJSON?lat='+vm.lat+'&lng='+vm.lng+'&radius=20&username=vanpeta'
+        url: '/geonames?lat='+lat+'&lng='+lng
       });
       promise.then(
         function(res){
-          res.data.postalCodes.forEach(function(e){
-            if (vm.cities.indexOf(e.adminName2) === -1){
-              vm.cities.push(e.adminName2)
+          var response = JSON.parse(res.data).postalCodes
+          console.log (response)
+          vm.cities = [];
+          response.forEach(function(e){
+            if (vm.cities.map(function(i) {return i.name; }).indexOf(e.placeName) == -1){
+              vm.cities.push({name: e.placeName, state: e.adminCode1})
             }
           })
           console.log(vm.cities)

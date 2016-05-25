@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Solar Eclipse Planner</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="js/vendor/jwt-decode.2.0.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.js"></script>
@@ -11,15 +12,21 @@
   </head>
 
   <body onload="onLoad()">
-      <header ng-controller="NavbarController as vm">
-      <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <a ui-sref="home" class="navbar-brand">Home</a>
-          <button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
-          <button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
-        </div>
-      </nav>
-    </header>
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+      <div class="cover-container">
+        <header ng-controller="NavbarController as vm">
+          <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+              <a ui-sref="home" class="navbar-brand">Home</a>
+              <button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button>
+              <button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+            </div>
+          </nav>
+        </header>
+      </div>
+    </div>
+  </div>
     <div ui-view></div>
 
     <script src="js/app.js" charset="utf-8"></script>
