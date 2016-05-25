@@ -2,30 +2,30 @@
   <div id="hiddenLat"></div>
   <div id="hiddenLng"></div>
 </div>
-<div>
-  <div id='map' ></div>
-  <table border="0" cellspacing="0" cellpadding="0" style="width: 725px;">
-    <tr>
-    <td style="width: 60%; text-align: left; vertical-align: top;">
+
+<div id='map'></div>
+<div  id="map-panel">
+  <div id="map-info">
+    <div id="map-position">
       Map centered on (latitude, longitude): <span id="mapCenter"></span><br />
       Cursor position (latitude, longitude): <span id="latlngCursor"></span><br />
     Distance from last marker: <span id="distValue"></span>
-    </td>
-    <td style="width: 25%; text-align: left; vertical-align: top;">
+    </div>
+    <div id="marker-position">
       <input type="checkbox" id="showmarker" checked="checked" /> Show marker on click<br />
       <input type="button" id="clearmarker" value="Clear Markers" onclick="clearMarkers();" />
-    </td>
-    <td style="width: 15%; text-align: right; vertical-align: top;">
-      <input type="checkbox" id="showlarge" onchange="enlarge();" /> Large map<br />
+    </div>
+    <div id="map-options">
       <input type="button" id="locCircShow" value="Eclipse Times in Popup" onclick="locCircShow();" />
-    </td>
-    </tr>
-  </table>
+    </div>
+  </div>
+</div>
 
-  <div id="cityList" class="col-xs-4">
+  <div id="cityList">
     <p ng-click="vm.getCities()">Get Cities around this point</p>
 
     <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city.name })" id="{{city.name}}">{{city.name}}, {{city.state}}</div>
   </div>
 </div>
+
 

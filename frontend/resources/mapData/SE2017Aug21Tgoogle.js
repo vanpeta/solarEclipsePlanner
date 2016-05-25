@@ -49,42 +49,6 @@ var map;
 var markers = new Array();
 var mouselat, mouselng;
 
-
-function enlarge() {
-  wd = document.createElement("div");
-  wd.setAttribute("id", "widetxt");
-  document.getElementsByTagName("body").item(0).appendChild(wd);
-  var obj = document.getElementById("map");
-  if (!document.getElementById("showlarge").checked) {
-    document.getElementsByTagName("body").item(0).removeChild(wd);
-    pd = document.getElementById("paperw");
-    if (pd != null)
-      pd.setAttribute("id", "paper");
-    obj.style.width = "725px";
-    obj.style.height = "500px";
-  }
-  else {
-    pd = document.getElementById("paper");
-    if (pd != null)
-      pd.setAttribute("id", "paperw");
-  if (window.innerWidth <= 725)
-    obj.style.width = "725px";
-  else
-    obj.style.width = "100%";//(window.innerWidth - 35) + "px";
-  if (window.innerHeight <= 500)
-    obj.style.height = "500px";
-  else
-    obj.style.height = (window.innerHeight - 50) + "px";
-  }
-  if (obj.offsetParent) {
-    var curtop = 0;
-    do {
-      curtop += obj.offsetTop;
-    } while (obj = obj.offsetParent);
-    scrollTo(0, curtop);
-  }
-}
-
 function createMarker(point) {
   var currentLng = point.lng();
   var currentLat = point.lat();
