@@ -22,12 +22,12 @@
       <input type="button" id="locCircShow" value="Eclipse Times in Popup" onclick="locCircShow();" />
     </td>
     </tr>
-   </table>
+  </table>
 
+  <div id="cityList">
+    <p ng-click="vm.getCities()">Get Cities around this point</p>
 
-  <p ng-click="vm.getCities()">Get Cities around this point</p>
-
-  <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city })" id="{{city}}">{{city}}</div>
-
+    <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city })" id="{{city}}">{{city}}</div>
+  </div>
 </div>
 

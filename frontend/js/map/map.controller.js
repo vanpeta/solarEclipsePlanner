@@ -12,7 +12,7 @@
     var lat = ''
     var lng = ''
 
-    var cities = {}
+    var cities = []
     vm.cities = cities;
     vm.test=('test')
     vm.lat=lat;
@@ -21,9 +21,12 @@
 
 
 /*
-get a list of nearby postcodes, based on lat and lng
-look up the placename for each postcode
-remove the duplicates
+To get the cities:
+•We'll get latitude and longitude from clicks on the map
+We'll use geonames.org API to:
+•get a list of nearby postcodes, based on lat and lng
+•look up the placename for each postcode
+•remove the duplicates
 */
 
 
@@ -34,12 +37,17 @@ remove the duplicates
       console.log(encodeURIComponent(vm.lat))
       var promise = $http({
         method: 'GET',
-        url: 'http://api.geonames.org/findNearbyPostalCodesJSON?lat='+vm.lat+'&lng='+vm.lng+'&username=vanpeta'
+        url: 'http://api.geonames.org/findNearbyPostalCodesJSON?lat='+vm.lat+'&lng='+vm.lng+'&radius=20&username=vanpeta'
       });
       promise.then(
         function(res){
-          vm.cities = res.data
+          res.data.postalCodes.forEach(function(e){
+            if (vm.cities.indexOf(e.adminName2) === -1){
+              vm.cities.push(e.adminName2)
+            }
+          })
           console.log(vm.cities)
+          return(vm.cities)
         })
     }
   }
