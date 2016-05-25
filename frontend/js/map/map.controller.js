@@ -5,9 +5,13 @@
     .module("solarEclipsePlanner")
     .controller("mapController", mapController);
 
-  mapController.$inject = ["$http", "$stateParams"];
+  mapController.$inject = ["$http", "$stateParams", "$timeout"];
 
-  function mapController($http, $stateParams) {
+  function mapController($http, $stateParams, $timeout) {
+    $timeout(function() {
+      onLoad();
+    });
+
     var vm = this
     var lat = ''
     var lng = ''

@@ -29,7 +29,6 @@ router.route('/api/token')
   .post(token.create);
 
   /* Geonames.org API calls */
-
 router.route('/geonames')
   .get(geonamesController.getCities)
 
