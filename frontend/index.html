@@ -7,11 +7,10 @@
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-    <!-- Compiled and minified CSS -->
+
+    <!-- Compiled and minified Materialized CDN CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <!-- Compiled and minified JavaScript -->
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
     <script src="js/vendor/jwt-decode.2.0.1.js"></script>
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
@@ -28,7 +27,7 @@
           <div class="nav-wrapper">
             <a ui-sref="home" class="brand-logo"><img class='logo' src="resources/images/logo.jpg"/></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button" class="btn modal-trigger deep-orange accent-3" data-target="modal-Sing-in">Sign in</button></li>
+              <li><button ng-hide="vm.authService.isLoggedIn()" type="button" class="btn modal-trigger deep-orange accent-3" data-target="modal-Sing-in">Sign in</button></li>
               <li><button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" ui-sref="home" type="button" class="btn deep-orange accent-3">Sign out</button></li>
             </ul>
           </div>
@@ -36,12 +35,16 @@
       </div>
     </header>
 
+
     <div ui-view></div>
 
 
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+     <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
     <script src="js/app.js" charset="utf-8"></script>
     <script src="js/config/app.debug.js"></script>
     <script src="js/config/app.httpInterceptors.js"></script>

@@ -8,7 +8,9 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'home.html'
+        templateUrl: 'home.html',
+        controller:   "SignInController",
+        controllerAs: "vm"
       })
       .state('map', {
         url: '/map',
@@ -22,9 +24,9 @@
         controller: "airbnbController",
         controllerAs: "vm"
       })
-      .state("signin", {
-        url:          "/signin",
-        templateUrl:  "/js/auth/signin.html",
+      .state("signup", {
+        url:          "/signup",
+        templateUrl:  "/js/auth/signup.html",
         controller:   "SignInController",
         controllerAs: "vm"
       });

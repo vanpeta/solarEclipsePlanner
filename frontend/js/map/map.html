@@ -2,29 +2,39 @@
   <div id="hiddenLat"></div>
   <div id="hiddenLng"></div>
 </div>
-<div class="row">
+<div class="row" id="map-panel">
   <div id='map' class='col s9'></div>
-  <div class='col s3 flow-text"'>
+  <div class='col s3 grey lighten-1'>
     <div  id="map-panel">
       <div id="map-info">
-        <div id="map-position">
-          Map centered on (latitude, longitude): <span id="mapCenter"></span><br />
-          Cursor position (latitude, longitude): <span id="latlngCursor"></span><br />
-        Distance from last marker: <span id="distValue"></span>
+        <div id="map-position" class="white-text">
+          Map centered on (latitude, longitude): <br/><span id="mapCenter"></span><br/>
+          <div class="divider"></div>
+          Cursor position (latitude, longitude): <br/><span id="latlngCursor"></span><br/>
+          <div class="divider"></div>
+          Distance from last marker: <br/><span id="distValue"></span><br/>
+          <div class="divider"></div>
         </div>
+        <div class="divider"></div>
         <div id="marker-position">
-          <input type="checkbox" id="showmarker" checked="checked" /> Show marker on click<br />
-          <input type="button" id="clearmarker" value="Clear Markers" onclick="clearMarkers();" />
+          <input type="checkbox" id="showmarker" checked="checked" />
+          <p><input type="button" id="clearmarker" value="Clear Markers" class='deep-orange accent-3 btn' onclick="clearMarkers();" /></p>
         </div>
+        <div class="divider"></div>
         <div id="map-options">
-          <input type="button" id="locCircShow" value="Eclipse Times in Popup" onclick="locCircShow();" />
+          <p><input type="button" id="locCircShow" value="Eclipse Times in Popup" class='deep-orange accent-3 btn' onclick="locCircShow();" /></p>
+        </div>
+        <div class="divider"></div>
+        <div id="get-cities">
+          <p><input type='button' ng-click="vm.getCities()" value="Get Cities around this point" class='deep-orange accent-3 btn'/></p>
         </div>
       </div>
     </div>
-
-    <div id="cityList">
-      <p ng-click="vm.getCities()">Get Cities around this point</p>
-      <div class='cities' ng-repeat="city in vm.cities" ui-sref="houses({ city: city.name })" id="{{city.name}}">{{city.name}}, {{city.state}}</div>
+    <div id="citylist">
+      <div class='cities white-text' ng-repeat="city in vm.cities" ui-sref="houses({ city: city.name })" id="{{city.name}}">
+        <div class="divider"></div>
+        {{city.name}}, {{city.state}}
+      </div>
     </div>
   </div>
 </div>

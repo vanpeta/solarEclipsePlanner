@@ -1,3 +1,6 @@
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+  }
 .logo {
   height: 64px;
 }
@@ -22,4 +25,17 @@
   background-size: cover;
   width: auto;
   height: 90vh;
+}
+#citylist{
+  overflow: scroll;
+  height: 245px;
+}
+#sign-up {
+  font-weight: 300px;
+}
+#map-panel{
+  margin-bottom: 0px;
+}
+#getCities {
+
 }
