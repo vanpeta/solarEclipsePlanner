@@ -22,29 +22,21 @@
 
   <body>
     <header ng-controller="NavbarController as vm">
-      <!-- Dropdown Structure -->
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
-      </ul>
+
       <div class="navbar-fixed">
-        <nav>
+        <nav class='black'>
           <div class="nav-wrapper">
             <a ui-sref="home" class="brand-logo"><img class='logo' src="resources/images/logo.jpg"/></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button" class="btn btn-default navbar-btn navbar-right">Sign in</button></li>
-              <li><button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" ui-sref="home" type="button" class="btn btn-default navbar-btn navbar-right">Sign out</button></li>
-              <!-- Dropdown Trigger -->
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><button ng-hide="vm.authService.isLoggedIn()" ui-sref="signin" type="button" class="btn modal-trigger deep-orange accent-3" data-target="modal-Sing-in">Sign in</button></li>
+              <li><button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" ui-sref="home" type="button" class="btn deep-orange accent-3">Sign out</button></li>
             </ul>
           </div>
         </nav>
       </div>
     </header>
 
-    <div id="page" ui-view></div>
+    <div ui-view></div>
 
 
     <!--Import jQuery before materialize.js-->

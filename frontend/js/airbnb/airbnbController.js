@@ -17,6 +17,9 @@ var cities = ["Los Angeles","San Francisco","Miami","Austin"]
     vm.airbnbSearch = airbnbSearch;
     vm.cities = cities;
     vm.houses = []
+    vm.beds = beds;
+    vm.bedrooms = bedrooms;
+    vm.bathrooms = bathrooms;
 
     airbnbSearch($stateParams.city)
 
@@ -31,6 +34,30 @@ var cities = ["Los Angeles","San Francisco","Miami","Austin"]
           vm.houses = JSON.parse(res.data).search_results
           console.log(vm.houses)
         })
+    }
+
+    function beds(house) {
+      if (house.listing.beds == 1) {
+        return "1 bed";
+      } else {
+        return house.listing.beds + " beds";
+      }
+    }
+
+    function bedrooms(house) {
+      if (house.listing.bedrooms == 1) {
+        return "1 bedroom";
+      } else {
+        return house.listing.bedrooms + " bedrooms";
+      }
+    }
+
+    function bathrooms(house) {
+      if (house.listing.bathrooms == 1) {
+        return "1 bathroom";
+      } else {
+        return house.listing.bathrooms + " bathrooms";
+      }
     }
   }
 })()

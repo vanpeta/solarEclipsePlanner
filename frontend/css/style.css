@@ -2,5 +2,24 @@
   height: 64px;
 }
 #map {
-  height: 100px;
+  height: 90vh;
+}
+#hiddenDiv{
+  display: none;
+}
+.houses {
+  height: 340px;
+}
+.chip {
+  z-index:1;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  ma
+}
+#home {
+  background-image: url("../resources/images/eclipse-close.jpg");
+  background-size: cover;
+  width: auto;
+  height: 90vh;
 }
