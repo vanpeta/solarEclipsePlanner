@@ -33,7 +33,7 @@
     <div id="citylist">
       <div class='cities white-text' ng-repeat="city in vm.cities" ui-sref="houses({ city: city.name })" id="{{city.name}}">
         <div class="divider"></div>
-        <div id="pointer">{{city.name}}, {{city.state}}</div>
+        <div id="pointer" class="hoverable">{{city.name}}, {{city.state}}</div>
       </div>
     </div>
   </div>
