@@ -27,34 +27,10 @@
     <button type="submit" class="btn deep-orange accent-3">Submit</button>
   </form>
 
-<div class="video-div col s6 right" id="video">
-  <video class="responsive-video video-bg" controls autoplay loop muted>
-    <source src="resources/images/trimmed.mp4" type="video/mp4">
-  </video>
-</div>
-</div>
-  <!-- sign-in-form -->
-  <div class="modal" id="modal-Sing-in">
-    <div class="modal-content">
-      <h2>Sign In</h2>
-      <form class="col s4" ng-submit="vm.submitLogIn();" name="signInForm" novalidate>
-        <div class="input-field">
-          <input ng-model="vm.logIn.email" type="email" ng-model="email" name="email" required class="validate" id="email">
-          <label for="Email">email</label>
-        </div>
-        <div class="input-field">
-          <input ng-model="vm.logIn.password" type="password" ng-model="password" name="password" required class="validate" id="Password">
-          <label for="password">Password</label>
-        </div>
-        <button type="submit" ng-disabled="signInForm.$invalid" class="btn deep-orange accent-3 modal-close">Submit</button>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <p>
-        <strong>
-          If you are not a user yet,
-          <a class="underline modal-close" ui-sref="signup"><u>Sign Up</u></a>.
-        </strong>
-      </p>
-    </div>
+  <div class="video-div col s6 right" id="video">
+    <video class="responsive-video video-bg" controls autoplay loop muted>
+      <source src="resources/images/trimmed.mp4" type="video/mp4">
+    </video>
   </div>
+</div>
+

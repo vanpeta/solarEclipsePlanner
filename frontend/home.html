@@ -8,14 +8,14 @@
   <!-- sign-in-form -->
   <div class="modal" id="modal-Sing-in" ng-hide="vm.toggleValue">
     <div class="modal-content">
-      <h1>Sign In</h1>
+      <h2 class='deep-orange-text'>Sign In</h2>
       <form class="col s4" ng-submit="vm.submitLogIn();" name="signInForm" novalidate>
         <div class="input-field">
-          <input ng-model="vm.logIn.email" type="email" ng-model="email" name="email" required class="validate" id="email">
+          <input ng-model="vm.logIn.email" type="email" ng-model="email" name="email" required class="validate deep-orange-text" id="email">
           <label for="Email">email</label>
         </div>
         <div class="input-field">
-          <input ng-model="vm.logIn.password" type="password" ng-model="password" name="password" required class="validate" id="Password">
+          <input ng-model="vm.logIn.password" type="password" ng-model="password" name="password" required class="validate deep-orange-text" id="Password">
           <label for="password">Password</label>
         </div>
         <button type="submit" ng-disabled="signInForm.$invalid" class="btn deep-orange accent-3 modal-close">Submit</button>
