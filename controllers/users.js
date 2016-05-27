@@ -53,11 +53,7 @@ function me(req, res, next) {
   User
     .findOne({_id: req.decoded._id}).exec()
     .then(function(user) {
-      res.json({
-        success: true,
-        message: 'Successfully retrieved user data.',
-        data: user
-      });
+      res.json(user);
     })
     .catch(function(err) {
       next(err);
@@ -66,12 +62,15 @@ function me(req, res, next) {
 
 function update (req,res,next) {
   var id = req.params.id;
+  console.log(req.params.id);
   User.findById(id, function(err, user) {
     if (err) next(err);
     user.username = req.body.username;
     user.email = req.body.email;
+    user.favorites = req.body.favorites;
     user.save(function(err, updatedUser) {
       if (err) next(err);
+      res.json(updatedUser)
     });
   });
 };

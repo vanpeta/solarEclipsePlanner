@@ -17,14 +17,15 @@ router.get('/', function (req, res, next) {
 router.route('/api/users')
   .get(usersController.index)
   .post(usersController.create)
-router.route('api/users/:id')
+router.route('/api/users/me')
+  .get(token.authenticate, usersController.me)
+router.route('/api/users/:id')
   .get(usersController.show)
   .put(usersController.update)
   .delete(usersController.destroy)
 
   /* Auth Routes */
-router.route('/api/users/me')
-  .post(token.authenticate, usersController.me)
+
 router.route('/api/token')
   .post(token.create);
 

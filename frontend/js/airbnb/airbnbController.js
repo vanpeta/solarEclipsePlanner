@@ -10,18 +10,27 @@
   function airbnbController($http, $stateParams) {
     var vm = this;
 
-
-var cities = ["Los Angeles","San Francisco","Miami","Austin"]
-
-    vm.test="test"
+    var favorite = {};
+    var cities = [];
     vm.airbnbSearch = airbnbSearch;
     vm.cities = cities;
     vm.houses = []
     vm.beds = beds;
     vm.bedrooms = bedrooms;
     vm.bathrooms = bathrooms;
+    vm.addFavorite = addFavorite;
+    vm.isFavorite = isFavorite;
+    vm.user = { favorites: []};
 
     airbnbSearch($stateParams.city)
+    $http({
+      method: "GET",
+      url: '/api/users/me'
+    }).then(function (res) {
+      console.log(res.data);
+      vm.user = (res.data)
+    })
+
 
     function airbnbSearch(city) {
       city=encodeURIComponent(city);
@@ -57,6 +66,33 @@ var cities = ["Los Angeles","San Francisco","Miami","Austin"]
         return "1 bathroom";
       } else {
         return house.listing.bathrooms + " bathrooms";
+      }
+    }
+
+    function isFavorite(house) {
+        for (var i =0; i<vm.user.favorites.length; i++) {
+          if (house.listing.id == vm.user.favorites[i].listing.id) {
+            return true;
+          }
+        }
+        return false;
+    }
+
+
+    function addFavorite(house) {
+      if (!isFavorite(house)) {
+        //save the house in the user object
+        vm.user.favorites.push(house);
+        $http({method: 'PUT',
+          url: "/api/users/"+vm.user._id,
+          data: vm.user}).then(function(res) {
+            vm.user = res.data;
+          })
+      } else {
+        //find index of this house in user.favorites and remove it
+        var index = vm.user.favorites.indexOf(house.listing.id)
+        vm.user.favorites.splice(index,1)
+        isFavorite(house)
       }
     }
   }
