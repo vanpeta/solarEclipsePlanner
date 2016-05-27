@@ -69,6 +69,8 @@
       }
     }
 
+
+
     function isFavorite(house) {
         for (var i =0; i<vm.user.favorites.length; i++) {
           if (house.listing.id == vm.user.favorites[i].listing.id) {
@@ -90,10 +92,16 @@
           })
       } else {
         //find index of this house in user.favorites and remove it
-        var index = vm.user.favorites.indexOf(house.listing.id)
-        vm.user.favorites.splice(index,1)
-        isFavorite(house)
+        var index = vm.user.favorites.indexOf(house)
+        vm.user.favorites.splice(index,1);
+        console.log(index)
+        $http({method: 'PUT',
+          url: "/api/users/"+vm.user._id,
+          data: vm.user}).then(function(res) {
+            vm.user = res.data;
+          })
       }
+      isFavorite(house)
     }
   }
 })()

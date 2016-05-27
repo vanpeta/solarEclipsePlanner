@@ -29,6 +29,12 @@
         templateUrl:  "/js/auth/signup.html",
         controller:   "SignInController",
         controllerAs: "vm"
+      })
+      .state("favorites", {
+        url: "/favorites",
+        templateUrl: "js/airbnb/favorites.html",
+        controller: "airbnbController",
+        controllerAs: "vm"
       });
     $urlRouterProvider.otherwise('/');
   }
