@@ -1,32 +1,33 @@
 <!-- sign-up-form -->
 
-<div class="row col s4">
-  <h2 class="deep-orange-text text=accent-3">Sign Up</h2>
+<div class="row col s4 black" id="signup-div">
 
-  <form class="col s4" ng-submit="vm.submitSignUp();">
+
+  <form class="col s4 offset-s1" ng-submit="vm.submitSignUp();">
+    <h2 class="deep-orange-text text=accent-3" id="signup">Sign Up</h2>
     <div class="input-field">
-      <input ng-model="vm.signUp.username" type="text" class="validate" id="username">
+      <input ng-model="vm.signUp.username" type="text" class="validate deep-orange-text" id="username">
       <label for="username">username</label>
     </div>
 
     <div class="input-field">
-      <input ng-model="vm.signUp.email" type="email" ng-class="{'red-border': vm.conflict}" class="validate" id="email">
+      <input ng-model="vm.signUp.email" type="email" ng-class="{'red-border': vm.conflict}" class="validate deep-orange-text" id="email">
       <label for="email">email address</label>
       <small ng-show="vm.conflict" class="text-danger"><em>Email exists…</em></small>
     </div>
 
     <div class="input-field">
-      <input ng-model="vm.signUp.password" type="password" class="validate" id="Password">
+      <input ng-model="vm.signUp.password" type="password" class="validate deep-orange-text" id="Password">
       <label for="Password">Password</label>
     </div>
     <div class="input-field">
-      <input ng-model="vm.signUp.passwordConfirmation" type="password" class="validate" id="Password2">
+      <input ng-model="vm.signUp.passwordConfirmation" type="password" class="validate deep-orange-text" id="Password2">
       <label for="Password2">Password confirmation</label>
     </div>
     <button type="submit" class="btn deep-orange accent-3">Submit</button>
   </form>
 
-<div class="video-div col s6 right">
+<div class="video-div col s6 right" id="video">
   <video class="responsive-video video-bg" controls autoplay loop muted>
     <source src="resources/images/trimmed.mp4" type="video/mp4">
   </video>

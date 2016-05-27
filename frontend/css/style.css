@@ -13,12 +13,24 @@ html {
 .houses {
   height: 340px;
 }
+#video {
+  margin-top: 7%;
+}
 .chip {
   z-index:1;
   position: absolute;
   top: 8px;
   right: 8px;
   ma
+}
+#pointer {
+  cursor: pointer;
+}
+#welcome{
+  padding-left: 100px;
+}
+#intro {
+  margin-top: 15%;
 }
 #home {
   background-image: url("../resources/images/eclipse-close.jpg");
@@ -36,6 +48,11 @@ html {
 #map-panel{
   margin-bottom: 0px;
 }
-#getCities {
-
+#signup {
+  margin-top: 0px;
+  padding-top: 40px;
+}
+#signup-div {
+  height: 90vh;
+  margin-bottom: 0px;
 }

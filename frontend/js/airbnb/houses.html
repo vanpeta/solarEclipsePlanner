@@ -1,26 +1,30 @@
-
-<div class='row'>
-  <div ng-repeat="house in vm.houses">
-    <div class='col s5'>
-      <div class="card medium hoverable">
-        <a href='https://www.airbnb.com/users/show/{{house.listing.primary_host.id}}' target="_blank">
-        <div class="chip">
-          <img ng-src="{{house.listing.primary_host.thumbnail_url}}" alt="Contact Person">
-          {{house.listing.primary_host.first_name}}
+<div class='orange accent-1'>
+  <div class="container">
+    <div class='row'>
+      <div ng-repeat="house in vm.houses">
+        <div class='col s6'>
+          <div class="card medium hoverable">
+            <a href='https://www.airbnb.com/users/show/{{house.listing.primary_host.id}}' target="_blank">
+            <div class="chip">
+              <img ng-src="{{house.listing.primary_host.thumbnail_url}}" alt="Contact Person">
+              {{house.listing.primary_host.first_name}}
+          </div>
+          </a>
+            <div class='card-image'>
+              <img ng-src='{{house.listing.picture_url}}'>
+              <spam class='card-title'>{{house.listing.name}}</spam>
+            </div>
+            <div class='card-content'>
+              <p>{{house.listing.property_type}} in {{house.listing.city}}, it has {{vm.beds(house)}} in {{vm.bedrooms(house)}} and {{vm.bathrooms(house)}}. Its price for the day of the eclipse is ${{house.pricing_quote.price.total.amount}}. </p>
+            </div>
+            <div class='card-action'>
+              <a href="https://www.airbnb.com/rooms/{{house.listing.id}}?checkin=08%2F21%2F2017&checkout=08%2F22%2F2017" target="_blank">View in airbnb</a>
+              <a ng-if="!vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Add to favorites</a>
+              <a ng-if="vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Remove From Favorites</a>
+            </div>
+          </div>
+        </div>
       </div>
-      </a>
-        <div class='card-image'>
-          <img ng-src='{{house.listing.picture_url}}'>
-          <spam class='card-title'>{{house.listing.name}}</spam>
-        </div>
-        <div class='card-content'>
-          <p>{{house.listing.property_type}} in {{house.listing.city}}, it has {{vm.beds(house)}} in {{vm.bedrooms(house)}} and {{vm.bathrooms(house)}}. Its price for the day of the eclipse is ${{house.pricing_quote.price.total.amount}}. </p>
-        </div>
-        <div class='card-action'>
-          <a href="https://www.airbnb.com/rooms/{{house.listing.id}}?checkin=08%2F21%2F2017&checkout=08%2F22%2F2017" target="_blank">View in airbnb</a>
-          <a ng-if="!vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Add to favorites</a>
-          <a ng-if="vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Remove From Favorites</a>
-        </div>
     </div>
   </div>
 </div>
