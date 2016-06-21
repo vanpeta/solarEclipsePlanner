@@ -33,7 +33,6 @@ We'll use geonames.org API to:
 •remove the duplicates
 */
 
-
     function getCities (lat,lng) {
       lat = document.getElementById("hiddenLat").innerHTML;
       lng = document.getElementById("hiddenLng").innerHTML;

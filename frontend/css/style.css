@@ -40,18 +40,22 @@ html {
 }
 #citylist{
   overflow: scroll;
-  height: 245px;
-  height: 70%;
+  height: 30vh;
+  flex: 1 1 auto;
+/*  height: 70%;*/
 }
 #sign-up {
   font-weight: 300px;
 }
 #map-panel{
   margin-bottom: 0px;
-  height: 30%;
+  flex: 0 1 auto;
+/*  height: 30%;*/
 }
 #map-panels {
   height: 90vh;
+  display: flex;
+  flex-flow: column;
 }
 #signup {
   margin-top: 0px;
