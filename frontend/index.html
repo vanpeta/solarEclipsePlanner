@@ -31,6 +31,7 @@
               <li><a ng-show="vm.authService.isLoggedIn()" ui-sref="favorites" class="white-text hoverable">FAVORITES</a>
 
               <li><button ng-hide="vm.authService.isLoggedIn()" type="button" class="btn modal-trigger deep-orange accent-3 waves-red" data-target="modal-Sing-in">Sign in</button></li>
+              <li><button ng-show="!vm.authService.isLoggedIn() && vm.currentPath()==='/'" type="button" class="btn modal-trigger deep-orange accent-3 waves red" data-target='modal-Guest'>Continue as a Guest</button>
               <li><button ng-show="vm.authService.isLoggedIn()" ng-click= "vm.authService.logOut()" ui-sref="home" type="button" class="btn deep-orange accent-3 waves-red">Sign out</button></li>
             </ul>
           </div>
