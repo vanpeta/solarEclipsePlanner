@@ -30,7 +30,7 @@
       console.log(res.data);
       vm.user = (res.data)
     })
-
+console.log(res)
 
     function airbnbSearch(city) {
       city=encodeURIComponent(city);

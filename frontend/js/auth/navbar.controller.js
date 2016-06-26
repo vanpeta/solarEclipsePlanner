@@ -12,6 +12,7 @@
 
     vm.authService = authService;
     vm.currentPath = currentPath;
+    vm.showMapLinkInHouses = showMapLinkInHouses;
 
     $log.info("NavbarController loaded!");
 
@@ -19,7 +20,14 @@
       $scope.currentPath = $location.path();
       return $scope.currentPath
     };
+console.log(currentPath())
 
+    function showMapLinkInHouses () {
+      $scope.currentPath = $location.path();
+      if ($scope.currentPath.includes('houses'))
+        return true;
+      else false
+    }
 
     $(document).ready(function(){
       // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered

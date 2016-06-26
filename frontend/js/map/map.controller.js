@@ -34,6 +34,7 @@ We'll use geonames.org API to:
 */
 
     function getCities (lat,lng) {
+      console.log("getcities function launched")
       lat = document.getElementById("hiddenLat").innerHTML;
       lng = document.getElementById("hiddenLng").innerHTML;
       var promise = $http({
