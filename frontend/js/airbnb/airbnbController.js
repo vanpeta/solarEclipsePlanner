@@ -5,9 +5,9 @@
     .module("solarEclipsePlanner")
     .controller("airbnbController", airbnbController);
 
-  airbnbController.$inject = ["$http", "$stateParams"];
+  airbnbController.$inject = ["$http", "$stateParams", "$log", "authService"];
 
-  function airbnbController($http, $stateParams) {
+  function airbnbController($http, $stateParams, $log, authService) {
     var vm = this;
 
     var favorite = {};
@@ -21,6 +21,7 @@
     vm.addFavorite = addFavorite;
     vm.isFavorite = isFavorite;
     vm.user = { favorites: []};
+    vm.authService = authService;
 
     airbnbSearch($stateParams.city)
     $http({

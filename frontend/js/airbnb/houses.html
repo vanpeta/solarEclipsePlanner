@@ -19,7 +19,7 @@
             </div>
             <div class='card-action'>
               <a href="https://www.airbnb.com/rooms/{{house.listing.id}}?checkin=08%2F21%2F2017&checkout=08%2F22%2F2017" target="_blank">View in airbnb</a>
-              <a ng-if="!vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Add to favorites</a>
+              <a ng-show="vm.authService.isLoggedIn()" ng-if="!vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Add to favorites</a>
               <a ng-if="vm.isFavorite(house)" ng-click="vm.addFavorite(house)">Remove From Favorites</a>
             </div>
           </div>
