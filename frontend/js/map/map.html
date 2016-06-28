@@ -31,6 +31,7 @@
       </div>
     </div>
     <div id="citylist">
+    <img ng-show='vm.loading' id='loading-bar' src="../../resources/images/loading-bar.gif">
       <div class='cities white-text' ng-repeat="city in vm.cities" ui-sref="houses({ city: city.name })" id="{{city.name}}">
         <div class="divider"></div>
         <div id="pointer" class="hoverable">{{city.name}}, {{city.state}}</div>

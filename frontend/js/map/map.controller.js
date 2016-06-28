@@ -12,16 +12,17 @@
       onLoad();
     });
 
-    var vm = this
-    var lat = ''
-    var lng = ''
+    var vm = this;
+    var lat = '';
+    var lng = '';
+    var cities = [];
 
-    var cities = []
     vm.cities = cities;
-    vm.test=('test')
+    vm.test=('test');
     vm.lat=lat;
     vm.lng=lng;
     vm.getCities=getCities;
+    vm.loading = false;
 
 
 /*
@@ -34,6 +35,7 @@ We'll use geonames.org API to:
 */
 
     function getCities (lat,lng) {
+      vm.loading=true;
       console.log("getcities function launched")
       lat = document.getElementById("hiddenLat").innerHTML;
       lng = document.getElementById("hiddenLng").innerHTML;
@@ -43,6 +45,7 @@ We'll use geonames.org API to:
       });
       promise.then(
         function(res){
+          vm.loading=false;
           var response = JSON.parse(res.data).postalCodes
           console.log (response)
           vm.cities = [];

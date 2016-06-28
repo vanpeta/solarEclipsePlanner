@@ -42,6 +42,7 @@ html {
   overflow: scroll;
   height: 30vh;
   flex: 1 1 auto;
+  position: relative;
 /*  height: 70%;*/
 }
 #sign-up {
@@ -64,4 +65,12 @@ html {
 #signup-div {
   height: 90vh;
   margin-bottom: 0px;
+}
+#loading-bar {
+  position: absolute;
+  margin: auto;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
 }
