@@ -5,31 +5,6 @@
       <h6 class="white-text">Solar Eclipse Planner, the first page that allows you to plan your trip for the next so called "American Eclipse".</h6>
     </div>
   </div>
-  <!-- sign-in-form -->
-  <div class="modal" id="modal-Sing-in" ng-hide="vm.toggleValue">
-    <div class="modal-content">
-      <h2 class='deep-orange-text'>Sign In</h2>
-      <form class="col s4" ng-submit="vm.submitLogIn();" name="signInForm" novalidate>
-        <div class="input-field">
-          <input ng-model="vm.logIn.email" type="email" ng-model="email" name="email" required class="validate deep-orange-text" id="email">
-          <label for="Email">email</label>
-        </div>
-        <div class="input-field">
-          <input ng-model="vm.logIn.password" type="password" ng-model="password" name="password" required class="validate deep-orange-text" id="Password">
-          <label for="password">Password</label>
-        </div>
-        <button type="submit" ng-disabled="signInForm.$invalid" class="btn deep-orange accent-3 modal-close">Submit</button>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <p>
-        <strong>
-          If you are not a user yet,
-          <a class="underline modal-close" ui-sref="signup"><u>Sign Up</u></a>.
-        </strong>
-      </p>
-    </div>
-  </div>
   <!-- guest-modal -->
   <div class='modal' id='modal-Guest' ng-hide="vm.toggleValue">
     <div class='modal-content'>
