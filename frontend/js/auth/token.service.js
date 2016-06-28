@@ -10,7 +10,7 @@
   function tokenService($log, $window) {
     $log.info("token service loaded!");
 
-    const TOKEN_KEY = 'shmee-banana';
+    var TOKEN_KEY = 'shmee-banana';
     var service = {
       store:    store,
       retrieve: retrieve,
