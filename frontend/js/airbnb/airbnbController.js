@@ -30,7 +30,7 @@
       console.log(res.data);
       vm.user = (res.data)
     })
-console.log(res)
+
 
     function airbnbSearch(city) {
       city=encodeURIComponent(city);
@@ -41,7 +41,6 @@ console.log(res)
       promise.then(
         function(res){
           vm.houses = JSON.parse(res.data).search_results
-          console.log(vm.houses)
         })
     }
 

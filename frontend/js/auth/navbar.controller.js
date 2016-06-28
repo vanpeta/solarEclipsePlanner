@@ -20,7 +20,6 @@
       $scope.currentPath = $location.path();
       return $scope.currentPath
     };
-console.log(currentPath())
 
     function showMapLinkInHouses () {
       $scope.currentPath = $location.path();
