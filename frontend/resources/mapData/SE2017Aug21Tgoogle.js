@@ -49,6 +49,15 @@ var map;
 var markers = new Array();
 var mouselat, mouselng;
 
+  // function newMarker() {
+  //   google.maps.event.addListener(map, 'mousemove', function(e){
+  //     console.log( e.latLng.lat())
+  //     // markes = new google.maps.Marker({position: e.latlng, map:map})
+  //   })
+  // }
+  // newMarker()
+
+
 function createMarker(point) {
   var currentLng = point.lng();
   var currentLat = point.lat();
@@ -59,7 +68,7 @@ function createMarker(point) {
   var markericon = new GIcon(G_DEFAULT_ICON, "../resources/images/marker.png");
   var marker = new GMarker(point, {icon: markericon, draggable: true});
   gCurrentMarker = marker;
-  GEvent.addListener(marker, "mouseover", function() {
+  google.maps.event.addListener(marker, "mouseover", function() {
     gCurrentMarker = null;
     for (i = 0; i < markers.length; i ++) {
       if (marker == markers[i])
@@ -68,14 +77,14 @@ function createMarker(point) {
     marker.openInfoWindowHtml(loc_circ(marker.getPoint().lat(), marker.getPoint().lng()));
     document.getElementById("locCircShow").disabled = false;
   });
-  GEvent.addListener(marker, "dragstart", function() {
+  google.maps.event.addListener(marker, "dragstart", function() {
     map.closeInfoWindow();
   });
-  GEvent.addListener(marker, "dragend", function() {
+  google.maps.event.addListener(marker, "dragend", function() {
     marker.openInfoWindowHtml(loc_circ(marker.getPoint().lat(), marker.getPoint().lng()));
     document.getElementById("locCircShow").disabled = false;
   });
-  GEvent.addListener(marker, "infowindowclose", function() {
+  google.maps.event.addListener(marker, "infowindowclose", function() {
     document.getElementById("locCircShow").disabled = true;
   });
   map.addOverlay(marker);
@@ -148,15 +157,23 @@ function locCircShow() {
 }
 
 function onLoad() {
-  map = new GMap2(document.getElementById("map"), {draggableCursor: 'crosshair'});
+  var mapControls = {
+    zoom: 4,
+    center: new google.maps.LatLng(38.540, -98.546),
+    scaleControl: true,
+    overviewMapControl: true,
+    overviewMapControlOptions: {opened: true}
+  }
+  map = new google.maps.Map(document.getElementById("map"), mapControls/*{draggableCursor: 'crosshair'}*/);
   // Map Controls
-  map.addControl(new GLargeMapControl());
-  map.addControl(new GMapTypeControl());
-  map.addControl(new GScaleControl());
+
+  // map.addControl(new GLargeMapControl());
+  // map.addControl(new GMapTypeControl());
+  // map.addControl(new GScaleControl());
   // map.enableScrollWheelZoom();
-  map.enableContinuousZoom();
-  GEvent.addDomListener(document.getElementById("map"), "DOMMouseScroll", wheelZoom); // Firefox
-  GEvent.addDomListener(document.getElementById("map"), "mousewheel", wheelZoom); // IE
+  // map.enableContinuousZoom();
+  // GEvent.addDomListener(document.getElementById("map"), "DOMMouseScroll", wheelZoom); // Firefox
+  // GEvent.addDomListener(document.getElementById("map"), "mousewheel", wheelZoom); // IE
 
   // Event Listeners
   //
@@ -164,7 +181,7 @@ function onLoad() {
   // we echo the lat/lng of the center of the map after it is dragged or moved
   // by the user.
 
-  GEvent.addListener(map, "moveend", function() {
+  google.maps.event.addListener(map, "moveend", function() {
     var center = map.getCenter();
     var latLngStr = "(" + latitudeToString(center.lat().toFixed(5)) + ", " + longitudeToString(center.lng().toFixed(5)) + ")";
     document.getElementById("mapCenter").innerHTML = latLngStr;
@@ -172,7 +189,7 @@ function onLoad() {
 
  // Limit the zoom level
  var maxZoomLevel = 13; // Set the maximum zoom level here (integer from 0 to 20 maximum zoom)
- GEvent.addListener(map, "zoomend", function(oldZoom, newZoom) {
+ google.maps.event.addListener(map, "zoomend", function(oldZoom, newZoom) {
    if (newZoom > maxZoomLevel)
    {
      var zoom = 0;
@@ -197,20 +214,20 @@ function onLoad() {
  });
 
   // Display lat/lng of the cursor under the map
-  GEvent.addListener(map, "mousemove", function(point) {
-    mouselat = point.lat().toFixed(6);
-    mouselng = point.lng().toFixed(6);
-    if ((gPrevLat != point.lat()) || (gPrevLng != point.lng())) {
-      var latitude  = point.lat();
-      var longitude = point.lng();
+  google.maps.event.addListener(map, "mousemove", function(point) {
+    mouselat = point.latLng.lat().toFixed(6);
+    mouselng = point.latLng.lng().toFixed(6);
+    if ((gPrevLat != point.latLng.lat()) || (gPrevLng != point.latLng.lng())) {
+      var latitude  = point.latLng.lat();
+      var longitude = point.latLng.lng();
       if (longitude < -180)
         longitude += 360;
       else if (longitude > 180)
         longitude -= 360;
       var cursor = latitudeToString(latitude.toFixed(5)) + ", " + longitudeToString(longitude.toFixed(5));
       document.getElementById("latlngCursor").innerHTML = "(" + cursor + ")";
-      gPrevLat = point.lat();
-      gPrevLng = point.lng();
+      gPrevLat = point.latLng.lat();
+      gPrevLng = point.latLng.lng();
       if (markers.length > 0) {
       var lastpnt = markers[markers.length - 1].getLatLng();
     var kmDist = lastpnt.distanceFrom(point);
@@ -223,27 +240,32 @@ function onLoad() {
   });
 
 //*** #0V map.setCenter(new GLatLng(xx.xxxxxx,xxx.xxxxxx), 2, G_NORMAL_MAP);
-     map.setCenter(new GLatLng( 36.966377,-87.670898), 3, G_NORMAL_MAP);
+     // map.setCenter(new google.maps.LatLng( 36.966377,-87.670898), 3, roadmap);
 
-  map.zoomIn();
+  // map.zoomIn();
 //  document.getElementById("deltaT").innerHTML = "&Delta;T = " + elements[4] + " s";
   document.getElementById("locCircShow").disabled = true;
 
   var html = "";
-  var gemarkericon = new GIcon(G_DEFAULT_ICON, "../resources/images/gemarker.png");
-  var gemarker = new GMarker(map.getCenter(), {icon: gemarkericon, draggable: false});
-  GEvent.addListener(gemarker, "mouseover", function() {
+  var gemarkericon = {url: "../resources/images/gemarker.png"} ;
+  var gemarker = new google.maps.Marker({
+    position: {lat: 36.966377, lng: -87.670898},
+    map:map,
+    icon: gemarkericon,
+    draggable: false});
+  google.maps.event.addListener(gemarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    gemarker.openInfoWindowHtml(loc_circ(gemarker.getPoint().lat(), gemarker.getPoint().lng()));
+    new google.maps.InfoWindow().open(gemarker, loc_circ(e.latLng.lat(), e.latLng.lng()));
     document.getElementById("locCircShow").disabled = false;
   });
-  GEvent.addListener(gemarker, "infowindowclose", function() {
+  google.maps.event.addListener(gemarker, "infowindowclose", function() {
     document.getElementById("locCircShow").disabled = true;
   });
-  map.addOverlay(gemarker);
-  GEvent.addListener(map, "click", function(overlay, point) {
+  gemarker.setMap(map);
+
+  google.maps.event.addListener(map, "click", function(overlay, point) {
     if (point) {
-      html = loc_circ(point.lat(), point.lng());
+      html = loc_circ(point.latLng.lat(), point.latLng.lat());
       if (html != "") {
         if (document.getElementById("showmarker").checked) {
            createMarker(point);
@@ -260,17 +282,22 @@ function onLoad() {
   });
 
 //*** Greatest Duration marker ***
-  var gdmarkericon = new GIcon(G_DEFAULT_ICON, "./resources/images/gdmarker.png");
-  var gdmarker = new GMarker(new GLatLng( 37.576306, -89.110833), {icon: gdmarkericon, draggable: false});
-  GEvent.addListener(gdmarker, "mouseover", function() {
+  var gdmarkericon = {url: "./resources/images/gdmarker.png"};
+  var gdmarker = new google.maps.Marker({
+    position: {lat:37.576306, lng:-89.110833},
+    map: map,
+    icon: gdmarkericon,
+    draggable: false
+  });
+  google.maps.event.addListener(gdmarker, "mouseover", function() {
     gCurrentMarker = null;
     gdmarker.openInfoWindowHtml(loc_circ(gdmarker.getPoint().lat(), gdmarker.getPoint().lng()));
     document.getElementById("locCircShow").disabled = false;
   });
-  GEvent.addListener(gdmarker, "infowindowclose", function() {
+  google.maps.event.addListener(gdmarker, "infowindowclose", function() {
     document.getElementById("locCircShow").disabled = true;
   });
-  map.addOverlay(gdmarker);
+  gdmarker.setMap(map);
 
 // Insert TRACK.GOO (ex SHADOW.EXE) below here
 
