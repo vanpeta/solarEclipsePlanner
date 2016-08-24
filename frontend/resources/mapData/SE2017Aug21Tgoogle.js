@@ -79,7 +79,10 @@ function createMarker(point) {
       if (marker == markers[i])
         gCurrentMarker = marker;
     }
-    new google.maps.InfoWindow().open(marker, loc_circ(e.latLng.lat(), e.latLng.lng()));
+    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, marker);
+
+
+
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(marker, "dragstart", function(e) {
