@@ -94,7 +94,7 @@ function createMarker(point) {
     document.getElementById("locCircShow").disabled = true;
   });
   marker.setMap(map);
-  new google.maps.InfoWindow(loc_circ(point.latLng.lat(), point.latLng.lng())).open(map, marker);
+  new google.maps.InfoWindow({content: loc_circ(point.latLng.lat(), point.latLng.lng())}).open(map, marker);
   document.getElementById("locCircShow").disabled = false;
   markers[markers.length] = marker;
   return;
@@ -104,8 +104,6 @@ function clearMarkers() {
   var i;
   for (i = 0; i < markers.length; i ++)
     markers[i].setMap(null);
-  InfoWindow.close()
-  // map.closeInfoWindow();
   markers = new Array();
 }
 
@@ -119,8 +117,6 @@ function clearMarker() {
       break;
     }
   }
-    InfoWindow.close()
-  // map.closeInfoWindow();
 }
 
 function wheelZoom(a) {
@@ -264,7 +260,7 @@ function onLoad() {
     draggable: false});
   google.maps.event.addListener(gemarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    new google.maps.InfoWindow(loc_circ(e.latLng.lat(), e.latLng.lng())).open(map, gemarker);
+    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, gemarker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(gemarker, "infowindowclose", function() {
@@ -303,7 +299,7 @@ function onLoad() {
   });
   google.maps.event.addListener(gdmarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    new google.maps.InfoWindow(loc_circ(37.576306, -89.110833)).open(map,gdmarker);
+    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map,gdmarker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(gdmarker, "infowindowclose", function() {
