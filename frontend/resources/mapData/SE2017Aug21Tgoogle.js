@@ -81,22 +81,20 @@ function createMarker(point) {
     }
     new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, marker);
 
-
-
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(marker, "dragstart", function(e) {
     map.closeInfoWindow();
   });
   google.maps.event.addListener(marker, "dragend", function(e) {
-    new google.maps.InfoWindow().open(marker, loc_circ(e.latLng.lat(), e.latLng.lng()));
+    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, marker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(marker, "infowindowclose", function(e) {
     document.getElementById("locCircShow").disabled = true;
   });
   marker.setMap(map);
-  new google.maps.InfoWindow().open(marker, loc_circ(point.latLng.lat(), point.latLng.lng()));
+  new google.maps.InfoWindow(loc_circ(point.latLng.lat(), point.latLng.lng())).open(map, marker);
   document.getElementById("locCircShow").disabled = false;
   markers[markers.length] = marker;
   return;
@@ -237,8 +235,9 @@ function onLoad() {
       gPrevLat = point.latLng.lat();
       gPrevLng = point.latLng.lng();
       if (markers.length > 0) {
-      var lastpnt = markers[markers.length - 1].getLatLng();
-    var kmDist = lastpnt.distanceFrom(point);
+      var lastpnt = markers[markers.length - 1].position;
+    // var kmDist = lastpnt.distanceFrom(point);
+    var kmDist = google.maps.geometry.spherical.computeDistanceBetween(lastpnt, point.latLng)
       kmDist = kmDist / 1000.0;
       var miDist = kmDist * 0.621371192;
     kmDist = kmDist.toFixed(2) + 'km (' + miDist.toFixed(2) + ' miles)';
@@ -263,7 +262,7 @@ function onLoad() {
     draggable: false});
   google.maps.event.addListener(gemarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    new google.maps.InfoWindow().open(gemarker, loc_circ(e.latLng.lat(), e.latLng.lng()));
+    new google.maps.InfoWindow(loc_circ(e.latLng.lat(), e.latLng.lng())).open(map, gemarker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(gemarker, "infowindowclose", function() {
@@ -300,9 +299,9 @@ function onLoad() {
     icon: gdmarkericon,
     draggable: false
   });
-  google.maps.event.addListener(gdmarker, "mouseover", function() {
+  google.maps.event.addListener(gdmarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    gdmarker.openInfoWindowHtml(loc_circ(gdmarker.getPoint().lat(), gdmarker.getPoint().lng()));
+    new google.maps.InfoWindow(loc_circ(37.576306, -89.110833)).open(map,gdmarker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(gdmarker, "infowindowclose", function() {
