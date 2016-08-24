@@ -59,7 +59,6 @@ var mouselat, mouselng;
 
 
 function createMarker(point) {
-  console.log('create marker trigerred')
   var currentLng = point.latLng.lng();
   var currentLat = point.latLng.lat();
   document.getElementById('hiddenLat').textContent= currentLat;
@@ -185,7 +184,7 @@ function onLoad() {
   // we echo the lat/lng of the center of the map after it is dragged or moved
   // by the user.
 
-  google.maps.event.addListener(map, "moveend", function() {
+  google.maps.event.addListener(map, "dragend", function() {
     var center = map.getCenter();
     var latLngStr = "(" + latitudeToString(center.lat().toFixed(5)) + ", " + longitudeToString(center.lng().toFixed(5)) + ")";
     document.getElementById("mapCenter").innerHTML = latLngStr;
