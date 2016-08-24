@@ -103,8 +103,9 @@ function createMarker(point) {
 function clearMarkers() {
   var i;
   for (i = 0; i < markers.length; i ++)
-    map.removeOverlay(markers[i]);
-  map.closeInfoWindow();
+    markers[i].setMap(null);
+  InfoWindow.close()
+  // map.closeInfoWindow();
   markers = new Array();
 }
 
@@ -112,13 +113,14 @@ function clearMarker() {
   var i;
   for (i = 0; i < markers.length; i ++) {
     if (gCurrentMarker == markers[i]) {
-      map.removeOverlay(markers[i]);
+      markers[i].setMap(null);
       markers.splice(i, 1);
       document.getElementById("distValue").innerHTML = "";
       break;
     }
   }
-  map.closeInfoWindow();
+    InfoWindow.close()
+  // map.closeInfoWindow();
 }
 
 function wheelZoom(a) {
