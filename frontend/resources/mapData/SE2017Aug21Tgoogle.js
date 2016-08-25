@@ -2,6 +2,7 @@
 var gPrevLat = 0;
 var gPrevLng = 0;
 var gCurrentMarker = null;
+var infowindow = null;
 
 /* Insert Eclipse Besselian Elements below */
 
@@ -49,14 +50,6 @@ var map;
 var markers = new Array();
 var mouselat, mouselng;
 
-  // function newMarker() {
-  //   google.maps.event.addListener(map, 'mousemove', function(e){
-  //     console.log( e.latLng.lat())
-  //     // markes = new google.maps.Marker({position: e.latlng, map:map})
-  //   })
-  // }
-  // newMarker()
-
 
 function createMarker(point) {
   var currentLng = point.latLng.lng();
@@ -69,7 +62,8 @@ function createMarker(point) {
   var marker = new google.maps.Marker({
     position: {lat: point.latLng.lat(), lng: point.latLng.lng()},
     map: map,
-    icon: markericon
+    icon: markericon,
+    draggable: true
   });
   gCurrentMarker = marker;
   google.maps.event.addListener(marker, "mouseover", function(e) {
@@ -78,22 +72,45 @@ function createMarker(point) {
       if (marker == markers[i])
         gCurrentMarker = marker;
     }
-    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, marker);
+    if (infowindow) {
+      infowindow.close()
+      document.getElementById("locCircShow").disabled = true;
+    }
+    infowindow = new google.maps.InfoWindow({
+      content: loc_circ(e.latLng.lat(), e.latLng.lng())
+    });
+    infowindow.open(map, marker);
 
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(marker, "dragstart", function(e) {
-    map.closeInfoWindow();
+    infowindow.close()
+    document.getElementById("locCircShow").disabled = true;
   });
   google.maps.event.addListener(marker, "dragend", function(e) {
-    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, marker);
+    if (infowindow) {
+      infowindow.close()
+      document.getElementById("locCircShow").disabled = true;
+    }
+    infowindow = new google.maps.InfoWindow({
+      content: loc_circ(e.latLng.lat(), e.latLng.lng())
+    });
+    infowindow.open(map, marker);
     document.getElementById("locCircShow").disabled = false;
   });
-  google.maps.event.addListener(marker, "infowindowclose", function(e) {
+  google.maps.event.addListener(marker, "closeclick", function(e) {
     document.getElementById("locCircShow").disabled = true;
   });
   marker.setMap(map);
-  new google.maps.InfoWindow({content: loc_circ(point.latLng.lat(), point.latLng.lng())}).open(map, marker);
+  if (infowindow) {
+    infowindow.close()
+    document.getElementById("locCircShow").disabled = true;
+  }
+  infowindow = new google.maps.InfoWindow({
+    content: loc_circ(point.latLng.lat(), point.latLng.lng())
+  });
+  infowindow.open(map, marker);
+
   document.getElementById("locCircShow").disabled = false;
   markers[markers.length] = marker;
   return;
@@ -259,7 +276,14 @@ function onLoad() {
     draggable: false});
   google.maps.event.addListener(gemarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map, gemarker);
+    if (infowindow) {
+      infowindow.close()
+      document.getElementById("locCircShow").disabled = true;
+    }
+    infowindow = new google.maps.InfoWindow({
+      content: loc_circ(e.latLng.lat(), e.latLng.lng())
+    });
+    infowindow.open(map, gemarker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(gemarker, "infowindowclose", function() {
@@ -273,6 +297,7 @@ function onLoad() {
       if (html != "") {
         if (document.getElementById("showmarker").checked) {
            createMarker(point);
+
 //           map.removeOverlay(marker);
         }
         else {
@@ -298,7 +323,14 @@ function onLoad() {
   });
   google.maps.event.addListener(gdmarker, "mouseover", function(e) {
     gCurrentMarker = null;
-    new google.maps.InfoWindow({content: loc_circ(e.latLng.lat(), e.latLng.lng())}).open(map,gdmarker);
+    if (infowindow) {
+      infowindow.close()
+      document.getElementById("locCircShow").disabled = true;
+    }
+    infowindow = new google.maps.InfoWindow({
+      content: loc_circ(e.latLng.lat(), e.latLng.lng())
+    });
+    infowindow.open(map,gdmarker);
     document.getElementById("locCircShow").disabled = false;
   });
   google.maps.event.addListener(gdmarker, "infowindowclose", function() {
