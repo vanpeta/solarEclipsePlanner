@@ -3,7 +3,6 @@ var router = express.Router();
 var usersController = require('../controllers/users');
 var airbnbController = require('../controllers/airbnb');
 var geonamesController = require('../controllers/geonames');
-
 // Require token authentication.
 var token = require('../config/token_auth');
 
@@ -11,7 +10,6 @@ var token = require('../config/token_auth');
 router.get('/', function (req, res, next) {
   res.sendfile('frontend/index.html');
 });
-
 
 /* API Routes */
 router.route('/api/users')
@@ -25,7 +23,6 @@ router.route('/api/users/:id')
   .delete(usersController.destroy)
 
   /* Auth Routes */
-
 router.route('/api/token')
   .post(token.create);
 
