@@ -21,7 +21,6 @@ html {
   position: absolute;
   top: 8px;
   right: 8px;
-  ma
 }
 #pointer {
   cursor: pointer;
@@ -29,6 +28,9 @@ html {
 #welcome{
   padding-left: 100px;
 }
+/* #welcome2{
+  padding-top: 300px;
+} */
 #intro {
   margin-top: 15%;
 }
